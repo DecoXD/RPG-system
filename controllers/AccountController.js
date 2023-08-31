@@ -1,35 +1,16 @@
-const Account = require("../models/Account");
+const Account = require("../models/auth/Account");
 const bcrypt = require('bcrypt');
 const createUserToken = require("../utils/createUserToken");
 const TableDoesntExists = require("../custom_exceptions/TableDoesntExists");
+const getUserByParam = require("../utils/auth/getUSerByParam");
 
 module.exports = class AccountController{
-
-
-
-    static async getUserByParam(param,value){
-        try {
-            const user = await Account.findOne({raw:true,where:{
-                [param]:value
-            }})
-            if(user.length!=0){
-                return user
-            }
-        } catch (error) {
-            if(error.message.includes('exist')){
-                throw new TableDoesntExists('account')
-            } else {
-                return false
-            }
-            
-        }
-    }
 
     static async login(req,res) {
         const {login,password} = req.body;
         
         //check if exists
-        const user = await AccountController.getUserByParam('login',login)
+        const user = await getUserByParam('login',login)
 
         if(!user){
             res.status(401).json({message:'dados incorretos'});
@@ -81,7 +62,7 @@ module.exports = class AccountController{
         //check if user exists
         let user = ''
         try {
-            user = await AccountController.getUserByParam('login',login)
+            user = await getUserByParam('login',login)
         } catch (error) {
             res.status(501).json({message:'ocorreu algum erro tente novamente mais tarde',error:error.message})
             return
@@ -115,4 +96,5 @@ module.exports = class AccountController{
 
 
     }
+
 }

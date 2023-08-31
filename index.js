@@ -6,16 +6,21 @@ const port = 5000
 //cors
 const cors = require('cors')
 
-//models
-//auth
-const Account = require('./models/Account');
+//MODELS
+//auth - START MODELS BLOCK
+const Account = require('./models/auth/Account');
 
 //charModels
-const Char = require('./models/Char');
-const CharAtt = require('./models/CharAtt');
+const Char = require('./models/Char/Char');
+const CharClass = require('./models/Char/CharClass');
+
+// END MODELS BLOCK
+
 
 //routes
 const authRouter = require('./routes/AuthRoutes');
+const charRouter = require('./routes/CharRoutes');
+
 
 
 
@@ -23,6 +28,7 @@ const authRouter = require('./routes/AuthRoutes');
 app.use(express.json())
     
 
+app.use('/char',charRouter)
 app.use('/',authRouter)
 
 

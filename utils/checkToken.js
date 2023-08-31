@@ -6,9 +6,10 @@ function checkToken(req,res,next){
     res.status(401).json({message:'usuário nao autenticado'})
     return
    }
+   const secret = 'dorfinha'  
+    const token = authToken.split(' ')[1]
    try {
-    const token = jwt.verify(authToken,'dorfinha')
-    res.status(200).json({message:'usuário autenticado com sucesso',token})
+    const tokenVerify = jwt.verify(token,secret)
     next()
    } catch (error) {
     res.status(401).json({message:'token inválido'})
