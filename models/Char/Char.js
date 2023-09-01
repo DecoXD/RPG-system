@@ -15,10 +15,6 @@ const Char = conn.define('Chars',{
     skills:{
         type:DataTypes.STRING
     },
-    str:{
-        type:DataTypes.INTEGER,
-        
-    },
     abl:{
         type:DataTypes.INTEGER,
         validate:{
@@ -37,7 +33,7 @@ const Char = conn.define('Chars',{
         type:DataTypes.INTEGER,
         
     },
-    res:{
+    resist:{
         type:DataTypes.INTEGER,
         
     },

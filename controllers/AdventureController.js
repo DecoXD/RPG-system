@@ -5,8 +5,6 @@ const adventureExists = require("../utils/adventure/adventureExists");
 const getToken = require("../utils/jwt/getToken");
 const getUserIdByToken = require("../utils/jwt/getUserIdByToken");
 const isValidUser = require("../utils/auth/isValidUser");
-const isValidUser = require("../utils/auth/isValidUser");
-const getUserByParam = require("../utils/auth/getUserByParam");
 const belongsToAdventure = require("../utils/char/belongsToAdventure");
 const getAdventureById = require("../utils/adventure/getAdventureById");
 

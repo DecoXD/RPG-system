@@ -7,7 +7,6 @@ const port = 5000
 const cors = require('cors')
 
 //MODELS START MODELS BLOCK
-
 // auth - 
 const Account = require('./models/auth/Account');
 
@@ -16,27 +15,22 @@ const Char = require('./models/Char/Char');
 
 // Adventure Models
 const Adventure = require('./models/adventure/Adventure');
-
-
 // END MODELS BLOCK
-
 
 //routes
 const authRouter = require('./routes/AuthRoutes');
 const charRouter = require('./routes/CharRoutes');
 const adventureRouter = require('./routes/AdventureRoutes');
 
-
-
-
+//cors
+app.use(cors())
 //allow body request
 app.use(express.json())
     
 //routes
-app.use('/adventure',adventureRouter)
-app.use('/char',charRouter)
-app.use('/',authRouter)
-
+app.use('/adventure',adventureRouter);
+app.use('/char',charRouter);
+app.use('/',authRouter);
 
 conn.sync().then(() =>{
     app.listen(port)

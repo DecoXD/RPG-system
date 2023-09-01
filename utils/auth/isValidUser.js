@@ -2,6 +2,7 @@ const Account = require("../../models/auth/Account")
 
 
 const isValidUser = async (id) => {
+  
     let user;
     try {
          user = await Account.findOne({where:{
