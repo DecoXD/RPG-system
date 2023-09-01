@@ -7,7 +7,7 @@ function checkToken(req,res,next){
     return
    }
    const secret = 'dorfinha'  
-    const token = authToken.split(' ')[1]
+   const token = authToken.split(' ')[1]
    try {
     const tokenVerify = jwt.verify(token,secret)
     next()

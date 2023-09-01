@@ -1,6 +1,6 @@
 const Account = require("../models/auth/Account");
 const bcrypt = require('bcrypt');
-const createUserToken = require("../utils/createUserToken");
+const createUserToken = require("../utils/jwt/createUserToken");
 const TableDoesntExists = require("../custom_exceptions/TableDoesntExists");
 const getUserByParam = require("../utils/auth/getUSerByParam");
 

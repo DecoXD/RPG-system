@@ -6,13 +6,17 @@ const port = 5000
 //cors
 const cors = require('cors')
 
-//MODELS
-//auth - START MODELS BLOCK
+//MODELS START MODELS BLOCK
+
+// auth - 
 const Account = require('./models/auth/Account');
 
-//charModels
+// char Models
 const Char = require('./models/Char/Char');
-const CharClass = require('./models/Char/CharClass');
+
+// Adventure Models
+const Adventure = require('./models/adventure/Adventure');
+
 
 // END MODELS BLOCK
 
@@ -20,14 +24,16 @@ const CharClass = require('./models/Char/CharClass');
 //routes
 const authRouter = require('./routes/AuthRoutes');
 const charRouter = require('./routes/CharRoutes');
+const adventureRouter = require('./routes/AdventureRoutes');
 
 
 
 
-
+//allow body request
 app.use(express.json())
     
-
+//routes
+app.use('/adventure',adventureRouter)
 app.use('/char',charRouter)
 app.use('/',authRouter)
 

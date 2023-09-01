@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 const secret = require("./scrt")
 
 
-const getUserByToken = async (token) => {
+const getUserIdByToken = async (token) => {
     
     try {
         const decoded = jwt.decode(token)
@@ -14,4 +14,4 @@ const getUserByToken = async (token) => {
     
 }
 
-module.exports = getUserByToken
+module.exports = getUserIdByToken

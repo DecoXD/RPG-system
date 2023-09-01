@@ -1,13 +1,63 @@
 const {DataTypes} = require('sequelize');
 const conn = require('../../db/conn');
 const Account = require('../auth/Account');
-const CharClass = require('./CharClass');
-
+const Adventure = require('../adventure/Adventure');
 const Char = conn.define('Chars',{
     name:{
         type:DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        unique:true
+    },
+    classe:{
+      type:DataTypes.STRING,
+      allowNull:false
+    },
+    skills:{
+        type:DataTypes.STRING
+    },
+    str:{
+        type:DataTypes.INTEGER,
+        
+    },
+    abl:{
+        type:DataTypes.INTEGER,
+        validate:{
+            max:4
+        }
+    },
+    int:{
+        type:DataTypes.INTEGER,
+        
+    },
+    esp:{
+        type:DataTypes.INTEGER,
+        
+    },
+    arm:{
+        type:DataTypes.INTEGER,
+        
+    },
+    res:{
+        type:DataTypes.INTEGER,
+        
+    },
+    level:{
+        type:DataTypes.INTEGER
+    },
+    exp:{
+        type:DataTypes.INTEGER
+        
+    },
+    points:{
+        type:DataTypes.INTEGER
+    },
+    nextLevel:{
+        type:DataTypes.INTEGER,
+        defaultValue:100
     }
+   
+
+
 
 })
 
@@ -20,14 +70,13 @@ Char.belongsTo(Account, {
         onUpdate:"CASCADE"
     })
 
-CharClass.hasMany(Char,{
-    onDelete:'CASCADE',
-    onUpdate:'CASCADE'
-})// uma classe tem muitos personagens que pertencem a ela;
-Char.belongsTo(CharClass,{
-    onDelete:'CASCADE',
-    onUpdate:'CASCADE',
-})// um personagem por exemplo pode pertencer a uma classe de magos;
-
+Adventure.hasMany(Char,{
+    onDelete:"CASCADE",
+    onUpdate:"CASCADE"
+})
+Char.belongsTo(Adventure,{
+    onDelete:"CASCADE",
+    onUpdate:"CASCADE"
+})
 
 module.exports = Char
